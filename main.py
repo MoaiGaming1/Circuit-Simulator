@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import components
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+volt = components.Source()
+volt.potentialBegin = 5
+volt.voltage = 5
+volt.resistance = 2
 
+r = components.Resistor()
+r.resistance = 8
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+8 to toggle the breakpoint.
+c1 = components.Connection(volt, r)
+c2 = components.Connection(r, volt)
 
+circ = components.Circuit()
+circ.setCircuit([volt, r], [c1, c2])
+circ.evaluate()
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(volt.voltage, volt.current, volt.resistance, volt.power, volt.potentialBegin, volt.potentialEnd)
+print(r.voltage, r.current, r.resistance, r.power, r.potentialBegin, r.potentialEnd)
